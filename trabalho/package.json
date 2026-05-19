@@ -11,7 +11,9 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "body-parser": "^2.2.2",
     "express": "^5.2.1",
+    "express-handlebars": "^9.0.1",
     "handlebars": "^4.7.9",
     "mysql2": "^3.22.3",
     "sequelize": "^6.37.8"
