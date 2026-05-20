@@ -20,6 +20,7 @@ const sequelize = new Sequelize("cipa", "root","",{
 
 app.engine("handlebars", engine({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
+
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
 
@@ -27,6 +28,12 @@ app.get("/home", (req, res)=>{
     res.render("home")
 })
 
+const dados_ocorrencias = app.define
+const dados_inspecoes = app
+const dados_agenda = app
+const dados_anotacoes = app
+
+//os status devem ser possivel ser alterado quando necessário (por exemplo, quando uma ocorrência for aberta, e no dia seguinte for concluída, o inspetor conseguir alterar o status no frontend para "concluído" ou "em andamento")
 
 
 app.listen(3333, ()=>{
