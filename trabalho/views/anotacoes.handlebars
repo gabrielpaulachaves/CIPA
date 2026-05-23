@@ -1,0 +1,19 @@
+<header>
+    <h1>testando</h1>
+    
+    <form action="/anot" method="post">
+        <input type="text" name="nome" id="nome" required maxlength="100">
+        <textarea name="anotacao" id="anotacao"></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</header>
+
+<main> 
+    {{#each postanot}}
+    <div>
+    <h2>Acionador: {{nome_anotador}}</h2>
+    <p>{{anotacao}}</p>
+    <a href="/del/{{idanotacao}}"><button>deletar</button></a>
+    </div>
+    {{/each}}
+</main>
