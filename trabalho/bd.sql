@@ -29,7 +29,7 @@ create table inspecoes(
     descricao_inspecao text not null,
     acao text not null,
     status_inspecao enum("aberto", "em andamento", "resolvido") not null,
-    data_inspecao datetime,
+    data_inspecao date,
     id_ocorrencia int,
     foreign key (id_ocorrencia) references ocorrencias(idocorrencia)
 );

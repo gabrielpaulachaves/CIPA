@@ -1,0 +1,43 @@
+<header>
+    <h1>Inspeções</h1>
+    
+    <form action="/oco" method="post">
+        <h2>Nome do relator</h2>
+        <input type="text" name="nomeoco" id="nomeoco" required maxlength="100">
+        <h2>Data do ocorrido</h2>
+        <input type="date" name="dataoco" id="dataoco">
+        <h2>Setor do ocorrido</h2>
+        <input type="text" name="setoroco" id="setoroco" required maxlength="30">
+        <h2>Descrição</h2>
+        <textarea name="descoco" id="descoco" required></textarea>
+        <h2>Nível do ocorrido</h2>
+        <select name="niveloco" id="niveloco">
+            <option value="baixo">baixo</option>
+            <option value="medio">médio</option>
+            <option value="alto">alto</option>
+        </select>
+        <h2>Status da ocorrência</h2>
+        <select name="statusoco" id="statusoco">
+            <option value="aberto">aberto</option>
+            <option value="em andamento">em andamento</option>
+            <option value="resolvido">resolvido</option>
+        </select>
+        <h2>observacao</h2>
+        <textarea name="obsoco" id="obsoco" required></textarea>
+        <button>enviar</button>
+    </form>
+</header>
+<main> 
+    {{#each postoco}}
+    <div>
+        <h2>Descrição: {{descricao_ocorrencia}}</h2>
+        <p>{{nome_acionador}}</p>
+        <p>Data: {{data}}</p>
+        <p>Local: {{setor_ocorrencia}}</p>    
+        <p>Nível:{{nivel}} </p>
+        <p>Status atual: {{status_ocorrencia}}</p>
+        <p>observacao: {{observacao}}</p>
+    <a href="/del/{{idocorrencia}}"><button>deletar</button></a>
+    </div>
+    {{/each}}
+</main>

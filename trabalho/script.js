@@ -22,18 +22,22 @@ app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
 
 
-app.get("/home", (req, res)=>{
+app.get("/", (req, res)=>{
     res.render("home")
 })
+
 app.get("/anotacoes", (req, res)=>{
         postanot.findAll({raw: true, order:[["idanotacao", "DESC"]]}).then((anot)=>{res.render("./anotacoes", {postanot: anot})}) 
 })
+
+app.get("/ocorrencias", (req, res)=>{
+    postoco.findAll({raw: true, order:[["idocorrencia", "DESC"]]}).then((ocor)=>{res.render("./ocorrencias", {postoco: ocor})})
+})
+
 app.get("/inspecoes", (req, res)=>{
     res.render("./inspecoes")
 })
-app.get("/ocorrencias", (req, res)=>{
-    res.render("./ocorrencias")
-})
+
 app.get("/reuniao", (req, res)=>{
     res.render("./reuniao")
 })
@@ -45,8 +49,36 @@ app.post("/anot", (req, res)=>{
     }).then(()=>{res.redirect("/anotacoes")}).catch((error)=>{res.send(error)})
 })
 
+app.post("/oco", (req, res)=>{
+    postoco.create({
+        nome_acionador: req.body.nomeoco,
+        data: req.body.dataoco,
+        setor_ocorrencia: req.body.setoroco,
+        descricao_ocorrencia: req.body.descoco,
+        nivel: req.body.niveloco,
+        status_ocorrencia: req.body.statusoco,
+        observacao: req.body.obsoco
+    }).then(()=>{res.redirect("/ocorrencias")}).catch((error)=>{res.send(error)})
+})
+
+app.post("/ins", (req, res)=>{
+    postins.create({
+        setor_inspecao: req.body.localins,
+        descricao_inspecao: req.body.descins,
+        acao:req.body.acaoins,
+        status_inspecao: req.body.statusins,
+        data_inspecao: req.body.datains
+    }).then(()=>{res.redirect("/inspecoes")}).catch((error)=>{res.send(error)})
+})
+
+
+
+
 app.get("/del/:id", (req, res)=>{
     postanot.destroy({where:{"idanotacao": req.params.id}}).then(()=>{res.redirect("/anotacoes")}).catch((error)=>{res.send(error)})
+})
+app.get("/de/:id", (req, res)=>{
+    postoco.destroy({where:{"idocorrencia": req.params.id}}).then(()=>{res.redirect("/ocorrencias")}).catch((error)=>{res.send(error)})
 })
 
 

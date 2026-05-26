@@ -1,0 +1,31 @@
+<header>
+    <h1>Inspeções</h1>
+    
+    <form action="/ins" method="post">
+        <h2>Qual local a ser inspecionado</h2>
+        <input type="text" name="localins" id="localins" required maxlength="30">
+        <h2>descricao da inspeção</h2>
+        <textarea name="descins" id="descins"></textarea>
+        <h2>Qual ação deve ser tomada?</h2>
+        <textarea name="acaoins" id="acaoins"></textarea>
+        <h2>Status da Inspeção</h2>
+        <select name="statusins" id="statusins">
+            <option value="aberto">aberto</option>
+            <option value="em andamento">em andamento</option>
+            <option value="resolvido">resolvido</option>
+        </select>
+        <h2>Data da inspeção</h2>
+        <input type="date" name="datains" id="datains">
+        <h2>Referente a qual ocorrência?</h2>
+        <button type="submit">Enviar</button>
+    </form>
+</header>
+
+<main> 
+    {{#each postins}}
+    <div>
+
+    <a href="/del/{{idinspecao}}"><button>deletar</button></a>
+    </div>
+    {{/each}}
+</main>
