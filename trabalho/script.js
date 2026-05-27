@@ -39,7 +39,7 @@ app.get("/inspecoes", (req, res)=>{
 })
 
 app.get("/reuniao", (req, res)=>{
-    res.render("./reuniao")
+    postage.findAll({raw: true, order:[["idagenda", "DESC"]]}).then((age)=>{res.render("./reuniao", {postage: age})})
 })
 
 app.post("/anot", (req, res)=>{
@@ -70,6 +70,15 @@ app.post("/ins", (req, res)=>{
         data_inspecao: req.body.datains
     }).then(()=>{res.redirect("/inspecoes")}).catch((error)=>{res.send(error)})
 })
+app.post("/age", (req, res)=>{
+    postage.create({
+        titulo_agenda: req.body.nomeage,
+        data_agenda: req.body.datage,
+        hora_agenda: req.body.horage,
+        escricao_agenda: req.body.aborage
+    }).then(()=>{res.redirect("/reuniao")}).catch((error)=>{res.send(error)})
+})
+
 
 
 

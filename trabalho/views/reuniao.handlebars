@@ -1,0 +1,24 @@
+<header>
+    <h1>Inspeções</h1>
+    
+    <form action="/age" method="post">
+        <h2>Nome do compromisso</h2>
+        <input type="text" name="nomeage" id="nomeage" required maxlength="30">
+        <h2>Data</h2>
+        <input type="date" name="datage" id="datage">
+        <h2>Hora</h2>
+        <input type="time" name="horage" id="horage">
+        <h2>O que será abordado?</h2>
+        <textarea name="aborage" id="aborage" placeholder="Insira uma pequena descrição sobre o assunto"></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</header>
+
+<main> 
+    {{#each postage}}
+    <div>
+        <h2>{{}}</h2>
+    <a href="/del/{{idagenda}}"><button>deletar</button></a>
+    </div>
+    {{/each}}
+</main>
