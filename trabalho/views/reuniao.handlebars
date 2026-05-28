@@ -1,5 +1,5 @@
 <header>
-    <h1>Inspeções</h1>
+    <h1>Agenda</h1>
     
     <form action="/age" method="post">
         <h2>Nome do compromisso</h2>
@@ -17,8 +17,10 @@
 <main> 
     {{#each postage}}
     <div>
-        <h2>{{}}</h2>
-    <a href="/del/{{idagenda}}"><button>deletar</button></a>
+        <h2>{{titulo_agenda}}</h2>
+        <p>{{data_agenda}}</p><p>{{hora_agenda}}</p>
+        <p>{{descricao_agenda}}</p>
+    <a href="/del4/{{idagenda}}"><button>deletar</button></a>
     </div>
     {{/each}}
 </main>

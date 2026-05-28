@@ -27,7 +27,7 @@ const postoco = dboco.sequelize.define("ocorrencias", {
     observacao:{
         type: dboco.Sequelize.TEXT
     }
-}, {timestamps: false})
+}, {timestamps: false, freezeTableName: true})
 
 module.exports = postoco
 

@@ -18,6 +18,6 @@ const postage = dbreu.sequelize.define("agenda", {
     descricao_agenda:{
         type: dbreu.Sequelize.TEXT
     }
-}, {timestamps: false})
+}, {timestamps: false, freezeTableName: true})
 
 module.exports = postage

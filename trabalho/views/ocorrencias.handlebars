@@ -36,8 +36,17 @@
         <p>Local: {{setor_ocorrencia}}</p>    
         <p>Nível:{{nivel}} </p>
         <p>Status atual: {{status_ocorrencia}}</p>
+        <form action="/alterstatusoco" method="post">
+        <input type="hidden" name="idoco" value="{{idocorrencia}}">
+            <select name="alterstatusoco" id="alterstatusoco">
+            <option value="aberto">aberto</option>
+            <option value="em andamento">em andamento</option>
+            <option value="resolvido">resolvido</option>
+            </select>
+            <button>Salvar alterações</button>
+        </form>
         <p>observacao: {{observacao}}</p>
-    <a href="/del/{{idocorrencia}}"><button>deletar</button></a>
+    <a href="/del3/{{idocorrencia}}"><button>deletar</button></a>
     </div>
     {{/each}}
 </main>

@@ -33,6 +33,8 @@ create table inspecoes(
     id_ocorrencia int,
     foreign key (id_ocorrencia) references ocorrencias(idocorrencia)
 );
+alter table inspecoes
+modify data_inspecao date not null;
 
 inspecoes
 +--------------------+-------------------------------------------+------+-----+---------+----------------+

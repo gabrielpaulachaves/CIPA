@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+ /*------------------------------  PAGINA HOME   -----------------------------------*/
+#mainhome{
+    background-color: rgb(220, 255, 212);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#mainhome > h1 > strong{
+    color: red;
+}
+
+#divhome > a > button{
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.466);
+    border-radius: 10px;
+}
+#divhome > a > button:hover{
+    background-color: rgb(191, 243, 114);
+}
+#divhome > a > button:active{
+    background-color: rgb(195, 211, 171);
+}

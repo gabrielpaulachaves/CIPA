@@ -13,13 +13,13 @@ const postoco = require("./models/ocorrencias/postoco")
 const postins = require("./models/inspecoes/postins")
 const postage = require("./models/agenda/postage")
 const postanot = require("./models/anotacoes/postanot")
-const { where } = require("sequelize")
 console.log(typeof postanot)
 console.log(Object.keys(postanot))
 app.engine("handlebars", engine({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
+app.use(express.static("public"))
 
 
 app.get("/", (req, res)=>{
@@ -42,6 +42,9 @@ app.get("/reuniao", (req, res)=>{
     postage.findAll({raw: true, order:[["idagenda", "DESC"]]}).then((age)=>{res.render("./reuniao", {postage: age})})
 })
 
+
+
+
 app.post("/anot", (req, res)=>{
     postanot.create({
         nome_anotador: req.body.nome,
@@ -60,6 +63,11 @@ app.post("/oco", (req, res)=>{
         observacao: req.body.obsoco
     }).then(()=>{res.redirect("/ocorrencias")}).catch((error)=>{res.send(error)})
 })
+app.post("/alterstatusoco", (req, res)=>{
+    postoco.update({
+        status_ocorrencia: req.body.alterstatusoco
+    }, {where: {"idocorrencia": req.body.idoco}}).then(()=>{res.redirect("/ocorrencias")}).catch((error)=>{res.send(error)})
+})
 
 app.post("/ins", (req, res)=>{
     postins.create({
@@ -75,7 +83,7 @@ app.post("/age", (req, res)=>{
         titulo_agenda: req.body.nomeage,
         data_agenda: req.body.datage,
         hora_agenda: req.body.horage,
-        escricao_agenda: req.body.aborage
+        descricao_agenda: req.body.aborage
     }).then(()=>{res.redirect("/reuniao")}).catch((error)=>{res.send(error)})
 })
 
@@ -86,8 +94,14 @@ app.post("/age", (req, res)=>{
 app.get("/del/:id", (req, res)=>{
     postanot.destroy({where:{"idanotacao": req.params.id}}).then(()=>{res.redirect("/anotacoes")}).catch((error)=>{res.send(error)})
 })
-app.get("/de/:id", (req, res)=>{
+app.get("/del2/:id", (req, res)=>{
+    postins.destroy({where:{"idinspecao": req.params.id}}).then(()=>{res.redirect("/inspecoes")}).catch((error)=>{res.send(error)})
+})
+app.get("/del3/:id", (req, res)=>{
     postoco.destroy({where:{"idocorrencia": req.params.id}}).then(()=>{res.redirect("/ocorrencias")}).catch((error)=>{res.send(error)})
+})
+app.get("/del4/:id", (req, res)=>{
+    postage.destroy({where: {"idagenda": req.params.id}}).then(()=>{res.redirect("/reuniao")}).catch((error)=>{res.send(error)})
 })
 
 

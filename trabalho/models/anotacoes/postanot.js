@@ -12,6 +12,6 @@ const postanot = dbanot.sequelize.define("anotacoes", {
      anotacao: {
         type: dbanot.Sequelize.TEXT
      },   
-}, {timestamps:false })
+}, {timestamps:false, freezeTableName: true })
 
 module.exports = postanot

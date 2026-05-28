@@ -24,6 +24,6 @@ const postins = dbins.sequelize.define("inspecoes", {
     id_ocorrencia:{
        type: dbins.Sequelize.INTEGER
     }
-}, {timestamps: false})
+}, {timestamps: false, freezeTableName: true})
 
 module.exports = postins
