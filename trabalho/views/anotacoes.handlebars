@@ -1,18 +1,24 @@
-<header>
+<section id="popup-anot" class="desactive">
+    <div id="div-popup-anot">
+        <p id="fechar">X</p>
+            <form action="/anot" method="post">
+                <input type="text" name="nome" id="nomeanot" required maxlength="100"placeholder="Nome"><br>
+                <textarea name="anotacao" id="anotacao" placeholder="Anotação" maxlength="300"></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+</section>
+<header id="headerAnot">
     <h1>Anotações</h1>
-    
+    <button id="bTnAnot">Fazer anotação</button>
 </header>
-<div id="popup-anot">
-        <form action="/anot" method="post">
-            <input type="text" name="nome" id="nome" required maxlength="100"placeholder="Nome">
-            <textarea name="anotacao" id="anotacao" placeholder="Anotação"></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
-<main> 
+<main id="mainanot"> 
     {{#each postanot}}
-    <div>
-    <h2>Acionador: {{nome_anotador}}</h2>
+    <div class="postAnot">
+        <h2>Número: {{idanotacao}}</h2>
+    <h3>Acionador: </h3>
+    <p>{{nome_anotador}}</p>
+    <h3>Anotação:</h3>
     <p>{{anotacao}}</p>
     <a href="/del/{{idanotacao}}"><button>deletar</button></a>
     </div>

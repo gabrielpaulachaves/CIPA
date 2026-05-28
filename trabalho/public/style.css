@@ -34,3 +34,95 @@
 #divhome > a > button:active{
     background-color: rgb(195, 211, 171);
 }
+.active{
+    transform: translateY(0%);
+}
+.desactive{
+    transform: translateY(-100%);
+}
+/*------------------------------  PAGINA ANOTAÇÃO   -----------------------------------*/
+
+#headerAnot{
+    padding: 15px;
+    background-color: rgb(133, 255, 133);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#bTnAnot{
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+}
+#popup-anot{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.233);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#div-popup-anot{
+    background-color: white;
+    height: 300px;
+    width: 300px;
+}
+#div-popup-anot > form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#div-popup-anot > form > button{
+    margin: 20px;
+    font-size: 20px;
+}
+#div-popup-anot > p{
+    font-weight: bold;
+    position: absolute;
+    font-size: 22px;
+    cursor: pointer;
+    right: 40%;
+    top: 26%;
+}
+#mainanot{
+    padding: 20px;
+    display: flex;
+}
+.postAnot{
+    padding: 10px;
+    background-color: rgb(190, 190, 190);
+    border-radius: 10px;
+    width: 250px;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 10px;
+}
+.postAnot > a{
+    margin-top: 20px; 
+}
+.postAnot > a > button{
+    font-size: 17px;
+}
+#nomeanot{
+    width: 90%;
+    height: 20px;
+}
+#anotacao{
+    width: 90%;
+    height: 100px;
+}
+
+
+
+
+
+
+
