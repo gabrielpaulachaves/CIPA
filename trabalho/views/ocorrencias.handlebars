@@ -1,41 +1,46 @@
-<header>
-    <h1>Inspeções</h1>
-    
-    <form action="/oco" method="post">
-        <h2>Nome do relator</h2>
-        <input type="text" name="nomeoco" id="nomeoco" required maxlength="100">
-        <h2>Data do ocorrido</h2>
-        <input type="date" name="dataoco" id="dataoco">
-        <h2>Setor do ocorrido</h2>
-        <input type="text" name="setoroco" id="setoroco" required maxlength="30">
-        <h2>Descrição</h2>
-        <textarea name="descoco" id="descoco" required></textarea>
-        <h2>Nível do ocorrido</h2>
-        <select name="niveloco" id="niveloco">
-            <option value="baixo">baixo</option>
-            <option value="medio">médio</option>
-            <option value="alto">alto</option>
-        </select>
-        <h2>Status da ocorrência</h2>
-        <select name="statusoco" id="statusoco">
-            <option value="aberto">aberto</option>
-            <option value="em andamento">em andamento</option>
-            <option value="resolvido">resolvido</option>
-        </select>
-        <h2>observacao</h2>
-        <textarea name="obsoco" id="obsoco" required></textarea>
-        <button>enviar</button>
+<section id="popup-oco" class="desactive">
+    <div id="div-popup-oco">
+        <p id="fecharoco">X</p>
+            <form action="/oco" method="post">
+                <h2>Nome do relator</h2>
+                <input type="text" name="nomeoco" id="nomeoco" required maxlength="100">
+                <h2>Data do ocorrido</h2>
+                <input type="date" name="dataoco">
+                <h2>Setor do ocorrido</h2>
+                <input type="text" name="setoroco" id="setoroco" required maxlength="30">
+                <h2>Descrição</h2>
+                <textarea name="descoco" id="descoco" required></textarea>
+                <h2>Nível do ocorrido</h2>
+                <select name="niveloco" id="niveloco">
+                    <option value="baixo">baixo</option>
+                    <option value="medio">médio</option>
+                    <option value="alto">alto</option>
+                </select>
+                <h2>Status da ocorrência</h2>
+                <select name="statusoco" id="statusoco">
+                    <option value="aberto">aberto</option>
+                    <option value="em andamento">em andamento</option>
+                    <option value="resolvido">resolvido</option>
+                </select>
+                <h2>observação</h2>
+                <textarea name="obsoco" id="obsoco" required></textarea>
+                <button>enviar</button>
+        </div>
+</section>
+<header id="headerOco">
+    <h1>Ocorrências</h1>
+    <button id="bTnOco">Registrar ocorrência</button>
     </form>
 </header>
-<main> 
+<main id="mainOco"> 
     {{#each postoco}}
-    <div>
-        <h2>Descrição: {{descricao_ocorrencia}}</h2>
-        <p>{{nome_acionador}}</p>
-        <p>Data: {{data}}</p>
-        <p>Local: {{setor_ocorrencia}}</p>    
-        <p>Nível:{{nivel}} </p>
-        <p>Status atual: {{status_ocorrencia}}</p>
+    <div class="postOco">
+        <h2>{{descricao_ocorrencia}}</h2>
+        <p><span class="negrito">Acionador:</span> {{nome_acionador}}</p>
+        <p id="data-data" data-data="{{data}}"></p>
+        <p><span class="negrito">Local:</span> {{setor_ocorrencia}}</p>    
+        <p><span class="negrito">Nível:</span> {{nivel}} </p>
+        <p><span class="negrito">Status atual:</span> <span id="spanstatus" data-value="{{status_ocorrencia}}">{{status_ocorrencia}}</span></p>
         <form action="/alterstatusoco" method="post">
         <input type="hidden" name="idoco" value="{{idocorrencia}}">
             <select name="alterstatusoco" id="alterstatusoco">
@@ -45,8 +50,9 @@
             </select>
             <button>Salvar alterações</button>
         </form>
-        <p>observacao: {{observacao}}</p>
+        <p><span class="negrito">observação:</span> {{observacao}}</p>
     <a href="/del3/{{idocorrencia}}"><button>deletar</button></a>
     </div>
     {{/each}}
 </main>
+<script src="/oco.js"></script>
