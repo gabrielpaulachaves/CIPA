@@ -33,15 +33,21 @@ app.get("/ocorrencias", (req, res)=>{
 })
 
 app.get("/inspecoes", (req, res)=>{
-    postins.findAll({raw: true, order:[["idinspecao", "DESC"]]}).then((ins)=>{res.render("./inspecoes", {postins: ins})}).then(()=>{postoco.findAll({raw: true, order:[["idocorrencia", "DESC"]]}).then((ocofk)=>{postocofk: ocofk})}) //esse ins representa o array inteiro que veio do findAll, e no codigo .hbs que iremos fazer o foreach com o #each     
-})
+    async function buscar(){
+        try{          
+          const pins = await postins.findAll({raw: true, order:[["idinspecao", "DESC"]]})
+          const poco = await postoco.findAll({raw: true, order: [["idocorrencia", "DESC"]]})
+          res.render("./inspecoes", {ins: pins, oco: poco})
+        }
+    catch(error){
+        console.error(error)
+    }
+    
+} buscar()})
 
 app.get("/reuniao", (req, res)=>{
-    postage.findAll({raw: true, order:[["idagenda", "DESC"]]}).then((age)=>{res.render("./reuniao", {postage: age})})
+    postage.findAll({raw: true, order:[["idagenda", "DESC"]]}).then((age)=>{res.render("./reuniao", {postage: age})})//esse age representa o array inteiro que veio do findAll, e no codigo .hbs que iremos fazer o foreach com o #each 
 })
-
-
-
 
 app.post("/anot", (req, res)=>{
     postanot.create({
@@ -77,7 +83,10 @@ app.post("/ins", (req, res)=>{
         id_ocorrencia: req.body.refins
     }).then(()=>{res.redirect("/inspecoes")}).catch((error)=>{res.send(error)})
 })
-
+app.post("/alterstatusins", (req, res)=>{
+    postins.update({
+        status_inspecao: req.body.alterinspec}, {where: {"idinspecao": req.body.idins}}).then(()=>{res.redirect("/inspecoes")}).catch((error)=>{res.send(error)})
+})
 
 app.post("/age", (req, res)=>{
     postage.create({
