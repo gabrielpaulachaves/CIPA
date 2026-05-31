@@ -33,7 +33,7 @@ app.get("/ocorrencias", (req, res)=>{
 })
 
 app.get("/inspecoes", (req, res)=>{
-    res.render("./inspecoes")
+    postins.findAll({raw: true, order:[["idinspecao", "DESC"]]}).then((ins)=>{res.render("./inspecoes", {postins: ins})}).then(()=>{postoco.findAll({raw: true, order:[["idocorrencia", "DESC"]]}).then((ocofk)=>{postocofk: ocofk})}) //esse ins representa o array inteiro que veio do findAll, e no codigo .hbs que iremos fazer o foreach com o #each     
 })
 
 app.get("/reuniao", (req, res)=>{
@@ -71,11 +71,14 @@ app.post("/ins", (req, res)=>{
     postins.create({
         setor_inspecao: req.body.localins,
         descricao_inspecao: req.body.descins,
-        acao:req.body.acaoins,
+        acao: req.body.acaoins,
         status_inspecao: req.body.statusins,
-        data_inspecao: req.body.datains
+        data_inspecao: req.body.datains,
+        id_ocorrencia: req.body.refins
     }).then(()=>{res.redirect("/inspecoes")}).catch((error)=>{res.send(error)})
 })
+
+
 app.post("/age", (req, res)=>{
     postage.create({
         titulo_agenda: req.body.nomeage,
