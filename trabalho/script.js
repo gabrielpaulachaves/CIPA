@@ -34,9 +34,18 @@ app.get("/ocorrencias", (req, res)=>{
 
 app.get("/inspecoes", (req, res)=>{
     async function buscar(){
-        try{          
-          const pins = await postins.findAll({raw: true, order:[["idinspecao", "DESC"]]})
+        try{
+          const pins = await postins.findAll({include: [{model: db.postoco, as: "id_ocorrencias", attributes: ["descricao_ocorrencia", "status_ocorrencia"]}],raw: true, order:[["idinspecao", "DESC"]]})
           const poco = await postoco.findAll({raw: true, order: [["idocorrencia", "DESC"]]})
+                         
+            pins.associate = (db)=>{
+            pins.belongsTo(db.postoco, 
+                {foreignKey: "id_ocorrencia", as: "ocorrencia"}
+            )}
+          poco.associate = (db)=>{
+            poco.hasOne(db.postins,
+                {foreignKey: "id_ocorrencia", as: "inspecoes"}
+            )}        
           res.render("./inspecoes", {ins: pins, oco: poco})
         }
     catch(error){
@@ -44,6 +53,10 @@ app.get("/inspecoes", (req, res)=>{
     }
     
 } buscar()})
+
+
+
+
 
 app.get("/reuniao", (req, res)=>{
     postage.findAll({raw: true, order:[["idagenda", "DESC"]]}).then((age)=>{res.render("./reuniao", {postage: age})})//esse age representa o array inteiro que veio do findAll, e no codigo .hbs que iremos fazer o foreach com o #each 
