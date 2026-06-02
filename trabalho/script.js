@@ -13,6 +13,14 @@ const postoco = require("./models/ocorrencias/postoco")
 const postins = require("./models/inspecoes/postins")
 const postage = require("./models/agenda/postage")
 const postanot = require("./models/anotacoes/postanot")
+
+    postins.belongsTo(postoco, 
+                {foreignKey: "id_ocorrencia", as: "ocorrencia"}
+            )
+     postoco.hasMany(postins,
+                {foreignKey: "id_ocorrencia", as: "inspecoes"}
+            ) 
+
 app.engine("handlebars", engine({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
 app.use(bodyparser.urlencoded({extended: false}))
@@ -35,17 +43,10 @@ app.get("/ocorrencias", (req, res)=>{
 app.get("/inspecoes", (req, res)=>{
     async function buscar(){
         try{
-          const pins = await postins.findAll({include: [{model: db.postoco, as: "id_ocorrencias", attributes: ["descricao_ocorrencia", "status_ocorrencia"]}],raw: true, order:[["idinspecao", "DESC"]]})
+          const pins = await postins.findAll({raw: true,nest: true, include: [{model: postoco, as: "ocorrencia", attributes: ["descricao_ocorrencia", "status_ocorrencia"]}], order:[["idinspecao", "DESC"]]})
           const poco = await postoco.findAll({raw: true, order: [["idocorrencia", "DESC"]]})
                          
-            pins.associate = (db)=>{
-            pins.belongsTo(db.postoco, 
-                {foreignKey: "id_ocorrencia", as: "ocorrencia"}
-            )}
-          poco.associate = (db)=>{
-            poco.hasOne(db.postins,
-                {foreignKey: "id_ocorrencia", as: "inspecoes"}
-            )}        
+                  
           res.render("./inspecoes", {ins: pins, oco: poco})
         }
     catch(error){
@@ -53,8 +54,6 @@ app.get("/inspecoes", (req, res)=>{
     }
     
 } buscar()})
-
-
 
 
 

@@ -28,6 +28,7 @@ const postoco = dboco.sequelize.define("ocorrencias", {
         type: dboco.Sequelize.TEXT
     }
 }, {timestamps: false, freezeTableName: true})
+    
 
 module.exports = postoco
 

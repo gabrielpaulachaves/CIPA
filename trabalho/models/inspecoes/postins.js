@@ -26,4 +26,5 @@ const postins = dbins.sequelize.define("inspecoes", {
     }
 }, {timestamps: false, freezeTableName: true})
 
+
 module.exports = postins
