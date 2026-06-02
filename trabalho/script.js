@@ -18,7 +18,7 @@ const postanot = require("./models/anotacoes/postanot")
                 {foreignKey: "id_ocorrencia", as: "ocorrencia"}
             )
      postoco.hasMany(postins,
-                {foreignKey: "id_ocorrencia", as: "inspecoes"}
+                {foreignKey: "id_ocorrencia"}
             ) 
 
 app.engine("handlebars", engine({defaultLayout: "main"}))
