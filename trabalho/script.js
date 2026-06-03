@@ -14,12 +14,16 @@ const postins = require("./models/inspecoes/postins")
 const postage = require("./models/agenda/postage")
 const postanot = require("./models/anotacoes/postanot")
 
-    postins.belongsTo(postoco, 
-                {foreignKey: "id_ocorrencia", as: "ocorrencia"}
+   postins.belongsTo(postoco, 
+                {foreignKey: "id_ocorrencia", onDelete: "CASCADE", as: "ocorrencia"}
             )
      postoco.hasMany(postins,
                 {foreignKey: "id_ocorrencia"}
             ) 
+    /*postoco.hasMany(postins,  {foreignKey: "id_ocorrencia", onDelete: "CASCADE", type: dataTypes.UUID, as: "ocorrencia"})
+    postins.belongsTo(postoco)*/
+
+
 
 app.engine("handlebars", engine({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
@@ -54,8 +58,6 @@ app.get("/inspecoes", (req, res)=>{
     }
     
 } buscar()})
-
-
 
 app.get("/reuniao", (req, res)=>{
     postage.findAll({raw: true, order:[["idagenda", "DESC"]]}).then((age)=>{res.render("./reuniao", {postage: age})})//esse age representa o array inteiro que veio do findAll, e no codigo .hbs que iremos fazer o foreach com o #each 

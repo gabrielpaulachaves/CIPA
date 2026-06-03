@@ -29,12 +29,10 @@ create table inspecoes(
     descricao_inspecao text not null,
     acao text not null,
     status_inspecao enum("aberto", "em andamento", "resolvido") not null,
-    data_inspecao date,
+    data_inspecao date not null,
     id_ocorrencia int,
-    foreign key (id_ocorrencia) references ocorrencias(idocorrencia)
+    foreign key (id_ocorrencia) references ocorrencias(idocorrencia) on delete cascade
 );
-alter table inspecoes
-modify data_inspecao date not null;
 
 inspecoes
 +--------------------+-------------------------------------------+------+-----+---------+----------------+
