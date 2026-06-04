@@ -17,7 +17,7 @@ const postage = require("./models/agenda/postage")
 const postanot = require("./models/anotacoes/postanot")
 
    postins.belongsTo(postoco, 
-                {foreignKey: "id_ocorrencia", onDelete: "CASCADE", as: "ocorrencia"}
+                {foreignKey: "id_ocorrencia", as: "ocorrencia"}
             )
      postoco.hasMany(postins,
                 {foreignKey: "id_ocorrencia"}
