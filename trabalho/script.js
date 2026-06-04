@@ -5,6 +5,8 @@
 //npm install --save mysql2
 //npm install --save express-handlebars
 //npm install --save body-parser
+//npm install dotenv
+require("dotenv").config()
 const express = require("express")
 const app = express()
 const {engine} = require("express-handlebars")
@@ -22,8 +24,6 @@ const postanot = require("./models/anotacoes/postanot")
             ) 
     /*postoco.hasMany(postins,  {foreignKey: "id_ocorrencia", onDelete: "CASCADE", type: dataTypes.UUID, as: "ocorrencia"})
     postins.belongsTo(postoco)*/
-
-
 
 app.engine("handlebars", engine({defaultLayout: "main"}))
 app.set("view engine", "handlebars")

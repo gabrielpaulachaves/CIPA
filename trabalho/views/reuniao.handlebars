@@ -15,17 +15,18 @@
         </div>
     </section>
 <header>
-    <button><img src="/casa.png" alt=""></button>
+    <a href="/"><img src="/casa.png" alt="home" class="bTnhome"></a>
     <h1>Agenda</h1>
     <button id="bTnAge">Registrar agendamento</button>   
 </header>
 
-<main> 
+<main id="mainAge"> 
     {{#each postage}}
-    <div>
+    <div class="postAge">
         <h2>{{titulo_agenda}}</h2>
-        <p>{{data_agenda}}</p><p>{{hora_agenda}}</p>
-        <p>{{descricao_agenda}}</p>
+        <p data-data="{{data_agenda}}" class="datagedata"></p>
+        <p data-hora="{{hora_agenda}}" class="datagehora"></p>
+        <p><span class="negrito">O que será abordado:</span> {{descricao_agenda}}</p>
     <a href="/del4/{{idagenda}}"><button>deletar</button></a>
     </div>
     {{/each}}

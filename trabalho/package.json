@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "body-parser": "^2.2.2",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-handlebars": "^9.0.1",
     "handlebars": "^4.7.9",

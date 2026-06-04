@@ -28,6 +28,7 @@
         </div>
 </section>
 <header id="headerOco">
+    <a href="/"><img src="/casa.png" alt="home" class="bTnhome"></a>
     <h1>Ocorrências</h1>
     <button id="bTnOco">Registrar ocorrência</button>
     </form>
@@ -38,7 +39,7 @@
         <p><span class="negrito">id:</span> {{idocorrencia}}</p>
         <h2>{{descricao_ocorrencia}}</h2>
         <p><span class="negrito">Acionador:</span> {{nome_acionador}}</p>
-        <p id="data-data" data-data="{{data}}"></p>
+        <p class="data-data" data-data="{{data}}"></p>
         <p><span class="negrito">Local:</span> {{setor_ocorrencia}}</p>    
         <p><span class="negrito">Nível:</span> {{nivel}} </p>
         <p><span class="negrito">Status atual:</span> <span id="spanstatus" data-value="{{status_ocorrencia}}">{{status_ocorrencia}}</span></p>

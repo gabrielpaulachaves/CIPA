@@ -8,6 +8,9 @@
 .negrito{
    font-weight: bold; 
 }
+.bTnhome{
+    width: 50px;
+}
  /*------------------------------  PAGINA HOME   -----------------------------------*/
 header{
     padding: 15px;
@@ -290,7 +293,26 @@ header{
     right: 40%;
     top: 18%;
 }
-
+#mainAge{
+    padding: 20px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 270px);
+    gap: 20px;
+    justify-content: center;      
+}
+.postAge{
+    padding: 10px;
+    background-color: rgb(190, 190, 190);
+    border-radius: 10px;
+    width: 250px;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;   
+    gap: 10px;  
+}
 
 
 
