@@ -82,7 +82,21 @@ E após essa definição da foreignkey no script.js, utilizo nest: true para ani
 
 ****Arquivos em.handlebars****
 
-Antes de avançar na explicação do restante do código no script.js, preciso mostrar o código do nosso frontend e como eu exibo os dados por ele. Utilizarei como exemplo a página das inspeções.
+Antes de avançar na explicação do restante do código no script.js, preciso mostrar o código do nosso frontend e como eu exibo os dados por ele. Utilizarei como exemplo a página das inspeções, pois mostro como exibir os dados da tabela inspecoes e como eu exibi os dados da tabela ocorrencias pela tabela inspecoes.
+
+Para começar, eu crio um {{#each ins}}, que é como um forEach, ou seja, cada registro do banco terá o mesmo código que todos. Para exibir a coluna exata que eu quero, devo colocar entre {{}} o nome da coluna, assim: {{setor_inspecao}}, então todos os registros que tiverem um valor nessa coluna será exibido. Passando agora para exibição dos dados da tabela ocorrencias, para serem exibidas dentro do {{each ins}} o processo é diferente do que apenas colocar o nome da coluna, pois estou pedindo para exibir coluna de uma tabela diferente da tabela que está no each, ou seja, não são colunas que existem na tabela inspecoes, por isso que criei uma foreignkey no script principal. Se lembra do "as" que definimos no belongsto e hasmany? é agora que usaremos ele, veja um exemplo tirado do código:
+
+ <p><span class="negrito">Descrição:</span> {{ocorrencia.descricao_ocorrencia}}</p>
+
+como você pode ver, o alias "ocorrencia" permitiu com que eu buscasse pela coluna "descricao_ocorrencia" (uma coluna que nao existe na tabela inspecoes, apenas na tabela ocorrencias) dentro de um each para a tabela inspecoes. Isso tudo graças a foreignkey definida no script. É como se fosse um inner join feito no MySQL.
+Exemplo:
+   "select * from c.nome, t.numero
+   from cliente c (esse c é o alias, igual o "as" que coloquei no script)
+   inner join
+   telefone t;
+   
+Na criação do formulário você pode ver um #each oco, referente a tabela ocorrencias, mas como foi feito fora do #each ins, então eu não precisei da foreignkey nele.
+E por fim fecho com {{/each}}.
 
 
 
