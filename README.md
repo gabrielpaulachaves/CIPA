@@ -127,7 +127,6 @@ Você pode vizualiar o projeto nas imagens abaixo:
 
 <img width="1359" height="631" alt="image" src="https://github.com/user-attachments/assets/d164820b-6180-400b-9e19-e400163ccecf" />
 <img width="1359" height="612" alt="image" src="https://github.com/user-attachments/assets/a1cedd89-a10f-4ec2-b778-cd1fe4183770" />
-<img width="1360" height="768" alt="image" src="https://github.com/user-attachments/assets/d9297aee-b0d3-4714-8a24-ec7ad8b4159d" />
 
 
 <img width="1359" height="681" alt="image" src="https://github.com/user-attachments/assets/c29bd7d9-6e81-4ed9-a38a-347a3a3e4afe" />
