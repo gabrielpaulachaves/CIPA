@@ -103,8 +103,43 @@ Dentro do código .handlebars, a inserção de dados foram feitas dentro de um f
 
 Para a atualização do dado, como no exemplo para atualizar o status da ocorrência, criei um novo form que nos leva para uma rota de update no sequelize. Mas ainda tratando do que foi feito no handlebars, adicionei um input:hidden com um value que possui o idocorrencia da ocorrencia de onde ele está, então toda ocorrência possui esse input:hidden, e cada input:hidden possui a idocorrencia de onde ele está, isso será importante para localizar qual ocorrência está sendo atualizada. Ainda dentro desse form, criei um select com 3 options diferentes com value diferentes referentes ao status que cada um representa, e por fim um button para enviar esses dados. Com essas informações, passo para o script, onde a rota desse form se encontra. Na rota "/alterstatusoco" eu adiciono o model da tabela e digo o que será feito, ao invés de usar o create, utilizo o update. Esse update será para a coluna status_ocorrencia, que vai receber o valor do select com id alterstatusoco. Porém, se eu não dizer "onde" atualizar, eu irei atualizar TODOS os registros, e eu não quero isso, eu quero atualizar apenas um registro sem afetar os outros, e é nesse momento que utilizo o input:hidden. Faço um filtro com where, que será para atualizar só aquele onde o idocorrencia é igual ao valor do input:hidden que é o idocorrencia de onde ele está, e isso tornará a atualização de registro única e não global.
 
-Agora, para a exclusão de um registro, crio um elemento <a> para levar até a rota /del3/{{idocorrencia}}. Esse {{idocorrencia}} adicionado logo após o / é um parâmetro que irei passar para a rota. Dentro desse <a> possui um <button>, quando eu clicar, o <a> executará o comando dentro da rota.
-Passando pra rota encontramos "/del3/:id", esse :id é o nome do parâmetro, para definir um parâmetro utilizamos : e depois o nome desse parâmetro,  
+app.post("/alterstatusoco", (req, res)=>{
+    postoco.update({
+        status_ocorrencia: req.body.alterstatusoco
+    }, {where: {"idocorrencia": req.body.idoco}}).then(()=>{res.redirect("/ocorrencias")}).catch((error)=>{res.send(error)})
+})
 
+Agora, para a exclusão de um registro, crio um elemento <a> para levar até a rota /del3/{{idocorrencia}}. Esse {{idocorrencia}} adicionado logo após o / é o valor do parâmetro que irei passar para a rota.
+Passando pra rota encontramos "/del3/:id", esse :id é o nome do parâmetro, para definir um parâmetro utilizamos : e depois o nome desse parâmetro.
+Com esse parâmetro definido, e o valor vindo, agora farei o mesmo filtro que fiz para atualizar o status, porém, desta vez não direi que vem do body, direi que vem do parâmetro, e esse parâmetro recebe o valor que vem do body (que é no nosso caso, o id), vejamos
+
+app.get("/del3/:id", (req, res)=>{
+    postoco.destroy({where:{"idocorrencia": req.params.id   **aqui eu digo que o dado que será deletado é de parâmetro, e logo depois o nome desse parâmetro**
+
+
+Por fim, finalizo aqui esse meu primeiro projeto.
+Feito com muita dedicação e cuidado, buscando sempre a boa excelência e o melhor resultado para o cliente.
+ 
+Você pode vizualiar o projeto nas imagens abaixo:
+
+<img width="1359" height="681" alt="image" src="https://github.com/user-attachments/assets/cb18f9e3-24cf-4637-8b6b-e35bcc3aac83" />
+
+
+<img width="1359" height="631" alt="image" src="https://github.com/user-attachments/assets/d164820b-6180-400b-9e19-e400163ccecf" />
+<img width="1359" height="612" alt="image" src="https://github.com/user-attachments/assets/a1cedd89-a10f-4ec2-b778-cd1fe4183770" />
+<img width="1360" height="768" alt="image" src="https://github.com/user-attachments/assets/d9297aee-b0d3-4714-8a24-ec7ad8b4159d" />
+
+
+<img width="1359" height="681" alt="image" src="https://github.com/user-attachments/assets/c29bd7d9-6e81-4ed9-a38a-347a3a3e4afe" />
+<img width="1357" height="566" alt="image" src="https://github.com/user-attachments/assets/55ee6ae6-c753-4a59-839e-560e1c531459" />
+**Com status alterado**
+<img width="595" height="434" alt="image" src="https://github.com/user-attachments/assets/0efdda40-6db8-4e2f-819e-218840bc070e" />
+
+
+
+<img width="1359" height="680" alt="image" src="https://github.com/user-attachments/assets/0aad59e7-f841-4d5b-9c71-93f6340a786b" />
+<img width="595" height="345" alt="image" src="https://github.com/user-attachments/assets/a828645c-4002-4417-895f-7b62e6eb8837" />
+
+***Link de demo em breve***
 
     
