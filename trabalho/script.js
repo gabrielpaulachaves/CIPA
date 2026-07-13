@@ -25,6 +25,13 @@ const postanot = require("./models/anotacoes/postanot")
     /*postoco.hasMany(postins,  {foreignKey: "id_ocorrencia", onDelete: "CASCADE", type: dataTypes.UUID, as: "ocorrencia"})
     postins.belongsTo(postoco)*/
 
+const {sequelize} = require("./models/db")
+sequelize.sync().then(()=>{
+    console.log("Tabelas sincronizadas com o banco!")
+}).catch((error)=>{
+    console.error("Erro ao sincronizar tabelas:", error)
+})
+
 app.engine("handlebars", engine({defaultLayout: "main"}))
 app.set("view engine", "handlebars")
 app.use(bodyparser.urlencoded({extended: false}))
