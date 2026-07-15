@@ -3,33 +3,33 @@
             <p id="fecharins">X</p>
             <form action="/ins" method="post">
                 <h2>Qual local a ser inspecionado</h2>
-                <input type="text" name="localins" id="localins" required maxlength="30">
+                <input type="text" name="localins" id="localins" class="form-control" required maxlength="30">
                 <h2>descrição da inspeção</h2>
-                <textarea name="descins" id="descins"></textarea>
+                <textarea name="descins" id="descins" class="form-control"></textarea>
                 <h2>Qual ação deve ser tomada?</h2>
-                <textarea name="acaoins" id="acaoins"></textarea>
+                <textarea name="acaoins" id="acaoins" class="form-control"></textarea>
                 <h2>Status da Inspeção</h2>
-                <select name="statusins" id="statusins">
+                <select name="statusins" id="statusins" class="form-select">
                     <option value="aberto">aberto</option>
                     <option value="em andamento">em andamento</option>
                     <option value="resolvido">resolvido</option>
                 </select>
                 <h2>Data da inspeção</h2>
-                <input type="date" name="datains" id="datains">
+                <input type="date" name="datains" id="datains" class="form-control">
                 <h2>Referente a qual ocorrência?</h2>
-                <select name="refins" id="refins"> 
+                <select name="refins" id="refins" class="form-select"> 
                     {{#each oco}}
                     <option value="{{idocorrencia}}">{{idocorrencia}} - {{descricao_ocorrencia}}</option>
                     {{/each}}
                 </select>
-                <button type="submit">Enviar</button>
+                <button type="submit" class="btn btn-success">Enviar</button>
             </form>
         </div>
     </section>
     <header>
         <a href="/"><img src="/casa.png" alt="home" class="bTnhome"></a>
     <h1>Inspeções</h1> 
-    <button id="bTnIns">Registrar inspeção</button>
+    <button id="bTnIns" class="btn">Registrar inspeção</button>
 </header>
 <main id="mainins"> 
     {{#each ins}}
@@ -41,12 +41,12 @@
         <p><span class="negrito">Status atual da inspeção: </span><span id="spanstatus" data-value="{{status_inspecao}}"> {{status_inspecao}}</span></p>
         <form action="/alterstatusins" method="post">
         <input type="hidden" name="idins" value="{{idinspecao}}">
-            <select name="alterinspec" id="alterinspec">
+            <select name="alterinspec" id="alterinspec" class="form-select form-select-sm">
             <option value="aberto">aberto</option>
             <option value="em andamento">em andamento</option>
             <option value="resolvido">resolvido</option>
             </select>
-            <button>Salvar alterações</button>
+            <button class="btn btn-sm btn-outline-success">Salvar alterações</button>
         </form>
         <p id="dataspan" data-data="{{data_inspecao}}"></p>
         <h2><span class="negrito">Sua referência:</span></h2>
@@ -55,7 +55,7 @@
             <p><span class="negrito">Descrição:</span> {{ocorrencia.descricao_ocorrencia}}</p>
             <p><span class="negrito">Status da ocorrência:</span> {{ocorrencia.status_ocorrencia}}</p>          
         </div>     
-    <a href="/del2/{{idinspecao}}"><button>deletar</button></a>
+    <a href="/del2/{{idinspecao}}"><button class="btn btn-sm">deletar</button></a>
     </div>
     {{/each}}
 </main>

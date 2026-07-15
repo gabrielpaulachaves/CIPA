@@ -1,322 +1,311 @@
 @charset "UTF-8";
 
+:root{
+    --cipa-green: #1f9d55;
+    --cipa-green-dark: #157a41;
+    --cipa-green-light: #eafaf0;
+    --cipa-bg: #f4f7f6;
+}
+
 *{
-    margin: 0px;
-    padding: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    background-color: var(--cipa-bg);
+    color: #222;
 }
 .negrito{
-   font-weight: bold; 
+   font-weight: bold;
 }
 .bTnhome{
-    width: 50px;
-}
- /*------------------------------  PAGINA HOME   -----------------------------------*/
-header{
-    padding: 15px;
-    background-color: rgb(133, 255, 133);
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    width: 34px;
+    filter: brightness(0) invert(1);
 }
 
+/*------------------------------  HEADER (todas as páginas internas)  -----------------------------------*/
+header{
+    padding: 14px 24px;
+    background-color: var(--cipa-green);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+header h1{
+    font-size: 1.4rem;
+    margin: 0;
+}
+header button, header .btn{
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    background-color: #fff;
+    color: var(--cipa-green-dark);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+header button:hover, header .btn:hover{
+    background-color: var(--cipa-green-light);
+    transform: translateY(-1px);
+}
+
+/*------------------------------  PAGINA HOME   -----------------------------------*/
 #mainhome{
-    background-color: rgb(220, 255, 212);
-    height: 100vh;
+    background: linear-gradient(160deg, var(--cipa-green) 0%, var(--cipa-green-dark) 100%);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+#mainhome > h1{
+    color: #fff;
+    font-size: 2.6rem;
+    margin-bottom: 40px;
 }
 #mainhome > h1 > strong{
-    color: red;
+    color: #ffe08a;
 }
-
+#divhome{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+#divhome > a{
+    text-decoration: none;
+}
 #divhome > a > button{
-    padding: 10px;
-    margin: 10px;
-    font-size: 20px;
+    padding: 16px 28px;
+    margin: 4px;
+    font-size: 1.05rem;
+    font-weight: 600;
     cursor: pointer;
-    background-color: white;
-    border: 1px solid black;
-    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.466);
-    border-radius: 10px;
+    background-color: #fff;
+    color: var(--cipa-green-dark);
+    border: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    min-width: 170px;
+    transition: transform 0.15s ease, background-color 0.15s ease;
 }
 #divhome > a > button:hover{
-    background-color: rgb(191, 243, 114);
+    background-color: var(--cipa-green-light);
+    transform: translateY(-3px);
 }
 #divhome > a > button:active{
-    background-color: rgb(195, 211, 171);
+    transform: translateY(0);
 }
 .desactive{
-    transform: translateY(-100%);
+    transform: translateY(-150%);
 }
-/*------------------------------  PAGINA ANOTAÇÃO   -----------------------------------*/
 
-
-#bTnAnot{
-    padding: 5px;
-    font-size: 20px;
-    cursor: pointer;
-}
-#popup-anot{
+/*------------------------------  POPUPS (formulários) -----------------------------------*/
+#popup-anot, #popup-oco, #popup-ins, #popup-age{
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.233);
+    top: 0; left: 0;
+    background-color: rgba(0, 0, 0, 0.45);
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-}
-
-#div-popup-anot{
-    background-color: white;
-    height: 300px;
-    width: 300px;
-    border-radius: 10px;
-}
-#div-popup-anot > form{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-#div-popup-anot > form > button{
-    margin: 20px;
-    font-size: 20px;
-}
-#div-popup-anot > p{
-    font-weight: bold;
-    position: absolute;
-    font-size: 22px;
-    cursor: pointer;
-    right: 40%;
-    top: 24%;
-}
-#mainanot{
+    z-index: 1000;
     padding: 20px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 270px);
-    gap: 20px;
-    justify-content: center;
+    transition: transform 0.2s ease;
 }
-.postAnot{
-    padding: 10px;
-    background-color: rgb(190, 190, 190);
-    border-radius: 10px;
-    width: 250px;
-    max-height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
+#div-popup-anot, #div-popup-oco, #div-popup-ins, #div-popup-age{
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+    padding: 24px 20px;
+    width: 100%;
+    max-width: 340px;
+    max-height: 85vh;
+    overflow-y: auto;
 }
-.postAnot > a{
-    margin-top: 20px; 
-}
-.postAnot > a > button{
-    font-size: 17px;
-}
-#nomeanot{
-    width: 90%;
-    height: 20px;
-}
-#anotacao{
-    width: 90%;
-    height: 100px;
-}
-
-/*------------------------------  PAGINA OCORRENCIAS  -----------------------------------*/
-
-#bTnOco{
-    padding: 5px;
-    font-size: 20px;
-    cursor: pointer;
-}
-#popup-oco{
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.233);
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#div-popup-oco{
-     background-color: white;
-    height: 500px;
-    width: 300px;
-    border-radius: 10px;
-}
-#div-popup-oco > form{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-#div-popup-oco > p{
-    font-weight: bold;
-    position: absolute;
-    font-size: 22px;
-    cursor: pointer;
-    right: 40%;
-    top: 9%;
-}
-#mainOco{
-    padding: 20px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 270px);
-    gap: 20px;
-    justify-content: center;
-}
-.postOco{
-    padding: 10px;
-    background-color: rgb(190, 190, 190);
-    border-radius: 10px;
-    width: 250px;
-    max-height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;   
-    gap: 10px; 
-}
-#spanstatus{
-    font-weight: bold;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-
-/*------------------------------  PAGINA INSPECOES  -----------------------------------*/
-#bTnIns{
-    padding: 5px;
-    font-size: 20px;
-    cursor: pointer;
-}
-#popup-ins{
-     position: fixed;
-    background-color: rgba(0, 0, 0, 0.233);
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#div-popup-ins{
-     background-color: white;
-    height: 450px;
-    width: 300px;
-    padding: 10px;
-    border-radius: 10px;
-}
-#div-popup-ins > p{
-    font-weight: bold;
-    position: absolute;
-    font-size: 22px;
-    cursor: pointer;
-    right: 40%;
-    top: 9%;
-}
-#div-popup-ins > form{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-#mainins{
-    padding: 20px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 270px);
-    gap: 20px;
-    justify-content: center;    
-}
-.postIns{
-    padding: 10px;
-    background-color: rgb(190, 190, 190);
-    border-radius: 10px;
-    width: 250px;
-    max-height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;   
-    gap: 10px;    
-}
-#div-ins-ref-oco{
-    background-color: white;
-    padding: 5px;
-    border-radius: 10px;
-}
-/*------------------------------  PAGINA AGENDA   -----------------------------------*/
-#bTnAge{
-        padding: 5px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-#popup-age{
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.233);
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#div-popup-age{
-    background-color: white;
-    height: 400px;
-    width: 300px;
-    padding: 10px;
-    border-radius: 10px;
-}
+#div-popup-anot > form,
+#div-popup-oco > form,
+#div-popup-ins > form,
 #div-popup-age > form{
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+    gap: 10px;
 }
+#div-popup-anot h2, #div-popup-oco h2, #div-popup-ins h2, #div-popup-age h2{
+    font-size: 0.95rem;
+    color: var(--cipa-green-dark);
+    margin-top: 6px;
+}
+#div-popup-anot input, #div-popup-anot textarea,
+#div-popup-oco input, #div-popup-oco textarea, #div-popup-oco select,
+#div-popup-ins input, #div-popup-ins textarea, #div-popup-ins select,
+#div-popup-age input, #div-popup-age textarea{
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cfd8d4;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+#div-popup-anot button[type="submit"],
+#div-popup-oco button,
+#div-popup-ins button[type="submit"],
+#div-popup-age button[type="submit"]{
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--cipa-green);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+#div-popup-anot button[type="submit"]:hover,
+#div-popup-oco button:hover,
+#div-popup-ins button[type="submit"]:hover,
+#div-popup-age button[type="submit"]:hover{
+    background-color: var(--cipa-green-dark);
+}
+#div-popup-anot > p,
+#div-popup-oco > p,
+#div-popup-ins > p,
 #div-popup-age > p{
     font-weight: bold;
     position: absolute;
-    font-size: 22px;
+    font-size: 20px;
     cursor: pointer;
-    right: 40%;
-    top: 18%;
+    right: 16px;
+    top: 10px;
+    color: #888;
+    line-height: 1;
 }
-#mainAge{
-    padding: 20px;
-    margin: auto;
+#div-popup-anot > p:hover,
+#div-popup-oco > p:hover,
+#div-popup-ins > p:hover,
+#div-popup-age > p:hover{
+    color: #c0392b;
+}
+
+/*------------------------------  GRID DE CARDS (comum a todas as listagens)  -----------------------------------*/
+#mainanot, #mainOco, #mainins, #mainAge{
+    padding: 30px 20px;
+    margin: 0 auto;
+    max-width: 1200px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 270px);
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 20px;
-    justify-content: center;      
+    justify-content: center;
 }
-.postAge{
-    padding: 10px;
-    background-color: rgb(190, 190, 190);
-    border-radius: 10px;
-    width: 250px;
-    max-height: 500px;
+.postAnot, .postOco, .postIns, .postAge{
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--cipa-green);
+    max-height: 520px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;   
-    gap: 10px;  
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+    transition: box-shadow 0.15s ease;
+}
+.postAnot:hover, .postOco:hover, .postIns:hover, .postAge:hover{
+    box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+}
+.postAnot h2, .postOco h2, .postIns h2, .postAge h2{
+    color: var(--cipa-green-dark);
+    font-size: 1.1rem;
+}
+.postAnot a, .postOco a, .postIns a, .postAge a{
+    margin-top: 10px;
+    align-self: flex-end;
+}
+.postAnot > a > button,
+.postOco a > button,
+.postIns a > button,
+.postAge a > button{
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    background-color: #fdecea;
+    color: #c0392b;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.postAnot > a > button:hover,
+.postOco a > button:hover,
+.postIns a > button:hover,
+.postAge a > button:hover{
+    background-color: #f5c6c2;
 }
 
+/* selects/botões "salvar alterações" dentro dos cards */
+.postOco form, .postIns form{
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.postOco select, .postIns select{
+    padding: 5px 8px;
+    border-radius: 6px;
+    border: 1px solid #cfd8d4;
+}
+.postOco form button, .postIns form button{
+    padding: 5px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--cipa-green);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+.postOco form button:hover, .postIns form button:hover{
+    background-color: var(--cipa-green-dark);
+}
 
+#spanstatus{
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #1a1a1a;
+}
 
+#div-ins-ref-oco{
+    background-color: var(--cipa-green-light);
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
 
-
-
-
+/*------------------------------  responsividade  -----------------------------------*/
+@media (max-width: 500px){
+    header{
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    #mainhome > h1{
+        font-size: 2rem;
+    }
+}

@@ -3,34 +3,34 @@
         <p id="fecharoco">X</p>
             <form action="/oco" method="post">
                 <h2>Nome do relator</h2>
-                <input type="text" name="nomeoco" id="nomeoco" required maxlength="100">
+                <input type="text" name="nomeoco" id="nomeoco" class="form-control" required maxlength="100">
                 <h2>Data do ocorrido</h2>
-                <input type="date" name="dataoco">
+                <input type="date" name="dataoco" class="form-control">
                 <h2>Setor do ocorrido</h2>
-                <input type="text" name="setoroco" id="setoroco" required maxlength="30">
+                <input type="text" name="setoroco" id="setoroco" class="form-control" required maxlength="30">
                 <h2>Título da ocorrência</h2> <!-- no DB ela é da coluna descrição -->
-                <textarea name="descoco" id="descoco" required></textarea>
+                <textarea name="descoco" id="descoco" class="form-control" required></textarea>
                 <h2>Nível do ocorrido</h2>
-                <select name="niveloco" id="niveloco">
+                <select name="niveloco" id="niveloco" class="form-select">
                     <option value="baixo">baixo</option>
                     <option value="medio">médio</option>
                     <option value="alto">alto</option>
                 </select>
                 <h2>Status da ocorrência</h2>
-                <select name="statusoco" id="statusoco">
+                <select name="statusoco" id="statusoco" class="form-select">
                     <option value="aberto">aberto</option>
                     <option value="em andamento">em andamento</option>
                     <option value="resolvido">resolvido</option>
                 </select>
                 <h2>Descrição da ocorrência</h2> <!-- no DB ela é da coluna observacao-->
-                <textarea name="obsoco" id="obsoco" required></textarea>
-                <button>enviar</button>
+                <textarea name="obsoco" id="obsoco" class="form-control" required></textarea>
+                <button class="btn btn-success">enviar</button>
         </div>
 </section>
 <header id="headerOco">
     <a href="/"><img src="/casa.png" alt="home" class="bTnhome"></a>
     <h1>Ocorrências</h1>
-    <button id="bTnOco">Registrar ocorrência</button>
+    <button id="bTnOco" class="btn">Registrar ocorrência</button>
     </form>
 </header>
 <main id="mainOco"> 
@@ -45,15 +45,15 @@
         <p><span class="negrito">Status atual:</span> <span id="spanstatus" data-value="{{status_ocorrencia}}">{{status_ocorrencia}}</span></p>
         <form action="/alterstatusoco" method="post">
         <input type="hidden" name="idoco" value="{{idocorrencia}}">
-            <select name="alterstatusoco" id="alterstatusoco">
+            <select name="alterstatusoco" id="alterstatusoco" class="form-select form-select-sm">
             <option value="aberto">aberto</option>
             <option value="em andamento">em andamento</option>
             <option value="resolvido">resolvido</option>
             </select>
-            <button>Salvar alterações</button>
+            <button class="btn btn-sm btn-outline-success">Salvar alterações</button>
         </form>
         <p><span class="negrito">descrição:</span> {{observacao}}</p>
-    <a href="/del3/{{idocorrencia}}"><button>deletar</button></a>
+    <a href="/del3/{{idocorrencia}}"><button class="btn btn-sm">deletar</button></a>
     </div>
     {{/each}}
 </main>

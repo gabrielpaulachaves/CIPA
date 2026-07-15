@@ -2,16 +2,18 @@
     <div id="div-popup-anot">
         <p id="fecharanot">X</p>
             <form action="/anot" method="post">
-                <input type="text" name="nome" id="nomeanot" required maxlength="100"placeholder="Nome"><br>
-                <textarea name="anotacao" id="anotacao" placeholder="Anotação" maxlength="300"></textarea>
-                <button type="submit">Enviar</button>
+                <h2>Nome</h2>
+                <input type="text" name="nome" id="nomeanot" class="form-control" required maxlength="100" placeholder="Nome">
+                <h2>Anotação</h2>
+                <textarea name="anotacao" id="anotacao" class="form-control" placeholder="Anotação" maxlength="300" rows="4"></textarea>
+                <button type="submit" class="btn btn-success">Enviar</button>
             </form>
         </div>
 </section>
 <header id="headerAnot">
     <a href="/"><img src="/casa.png" alt="home" class="bTnhome"></a>
     <h1>Anotações</h1>
-    <button id="bTnAnot">Fazer anotação</button>
+    <button id="bTnAnot" class="btn">Fazer anotação</button>
 </header>
 <main id="mainanot"> 
     {{#each postanot}}
@@ -21,7 +23,7 @@
     <p>{{nome_anotador}}</p>
     <h3>Anotação:</h3>
     <p>{{anotacao}}</p>
-    <a href="/del/{{idanotacao}}"><button>deletar</button></a>
+    <a href="/del/{{idanotacao}}"><button class="btn btn-sm">deletar</button></a>
     </div>
     {{/each}}
 </main>
